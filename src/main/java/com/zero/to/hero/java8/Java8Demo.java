@@ -2,10 +2,8 @@ package com.zero.to.hero.java8;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
+import java.util.function.*;
+import java.util.stream.Collectors;
 
 public class Java8Demo {
     public static void main(String[] args) {
@@ -130,6 +128,58 @@ public class Java8Demo {
             consumer.accept(function.apply(supplier.get()));
         }
 
+        //BiPredicate, BiConsumer, BiFunction
+
+        BiPredicate<Integer, Integer> isSumEven = (x, y) -> (x + y) % 2 == 0;
+        System.out.println(isSumEven.test(5, 5));
+
+        BiConsumer<Integer, String> biConsumer = (x, y) -> {
+            System.out.println(x);
+            System.out.println(y);
+        };
+        biConsumer.accept(5, "happy");
+
+        BiFunction<String, String, Integer> biFunction = (x, y) -> (x + y).length();
+        System.out.println(biFunction.apply("a", " bc"));
+
+
+        /** Important Concept */
+        // UnaryOperator, BinaryOperator
+
+        Function<Integer, Integer> doubledIt = x -> 2 * x;         // here we are taking an Integer and returning an Integer
+                                                                   // so here we are doing duplicate for input and output type same
+                                                                   // for this Java has Introduce UnaryOperator.
+        UnaryOperator<Integer> doubledIt1 = x -> 2 * x;            // UnaryOperator<T> extends Function<T, T>
+        BinaryOperator<Integer> b = (x, y) -> (x + y);             // BinaryOperator<T> extends BiFunction<T,T,T>
+                                                                   // In BinaryOperator<T> all type will be same 2 input and 1 output type
+
+        // Method Reference : use method without invoking & in place of lambda expression
+        List<String> students = Arrays.asList("abc","def","ghi");
+        students.forEach(x -> System.out.println(x));                              // replace with Method Reference
+        students.forEach(System.out::println);
+
+        // Constructor Reference
+        List<String> names = Arrays.asList("A","B","C");
+        List<MobilePhone> mobilePhoneList = names.stream()
+                .map(x -> new MobilePhone(x)).collect(Collectors.toList());        // replace with Constructor Reference
+        mobilePhoneList.forEach(System.out::println);
+
+        List<MobilePhone> mobilePhoneList2 = names.stream()
+                .map(MobilePhone::new).collect(Collectors.toList());
+        mobilePhoneList2.forEach(System.out::println);
+    }
+}
+
+class MobilePhone {
+    String name;
+    public MobilePhone(String name) {
+        this.name = name;
+    }
+    @Override
+    public String toString() {
+        return "MobilePhone{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }
 
