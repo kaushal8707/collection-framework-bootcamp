@@ -1,6 +1,7 @@
 package com.zero.to.hero.java8.streams.collectors;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -123,6 +124,36 @@ public class CollectorsDemo {
 
 
         System.out.println("------------Examples - Practice Example-----------------");
+
+        // Example 1 - Collecting names by length
+        List<String> l1 = Arrays.asList("Anna", "Bob", "Alexander", "Brian", "Alice");
+        System.out.println(l1.stream().collect(Collectors.groupingBy(String::length)));
+
+        // Example 2 - Counting word occurrences
+        String sentence="Hello World Hello Java World";
+        System.out.println(Arrays.asList(sentence.split(" ")).stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting())));
+
+        // Example 3 - Partitioning Even & Odd Number
+        List<Integer> l2 = Arrays.asList(1, 2, 3, 4, 5, 6);
+        System.out.println(l2.stream().collect(Collectors.partitioningBy(x-> x%2==0)));
+
+        // Example 4 - Summing values in map
+        Map<String , Integer> items = new HashMap<>();
+        items.put("Apple", 10);
+        items.put("Banana", 20);
+        items.put("Orange", 15);
+
+        System.out.println(items.values().stream().reduce(Integer::sum).get());
+        System.out.println(items.values().stream().collect(Collectors.summingInt(x->x)));
+        System.out.println(items.values().stream().collect(Collectors.summarizingInt(x->x)).getSum());
+
+        // Example 5 - Creating a Map from Stream elements
+        List<String> fruits = Arrays.asList("Apple", "Banana", "Cherry");
+        System.out.println(fruits.stream().collect(Collectors.toMap(x-> x.toUpperCase(), y-> y.length())));
+
+        // Example 6 - find map key with count using to Map()
+        List<String> words2 = Arrays.asList("Apple", "Banana", "Apple", "Orange", "Banana", "Apple");
+        System.out.println(words2.stream().collect(Collectors.toMap(key->key, value->1, (x,y)->(x+y) )));
 
 
     }
