@@ -1,4 +1,4 @@
-package com.zero.to.hero.java8;
+package com.zero.to.hero.java8.java8_basics;
 
 import java.util.Arrays;
 import java.util.List;
