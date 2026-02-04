@@ -6,7 +6,7 @@ iterator() method returns Iterator
 
 Iterator uses to traverse over the collection one-by-one.
 
-using forEach() loop we can do but with is Iterator also we can do.
+using forEach() loop we can do but with this Iterator also we can do.
 
 => If any class implements Iterable then there foreach() functionality also will come
 

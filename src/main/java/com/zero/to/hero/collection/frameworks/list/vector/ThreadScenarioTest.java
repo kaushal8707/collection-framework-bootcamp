@@ -9,13 +9,13 @@ public class ThreadScenarioTest {
         ArrayList<Integer> list=new ArrayList<>();
 
         Thread t1=new Thread(()-> {
-            for(int i=1;i<=1000;i++){
+            for(int i=1;i<=10;i++){
                 list.add(i);
             }
         });
 
         Thread t2=new Thread(()-> {
-            for(int i=1;i<=1000;i++){
+            for(int i=1;i<=10;i++){
                 list.add(i);
             }
         });

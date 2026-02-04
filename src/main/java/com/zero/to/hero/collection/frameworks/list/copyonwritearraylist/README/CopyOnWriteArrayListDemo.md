@@ -8,8 +8,6 @@ CopyOnWriteArrayList
         a new copy of the list is created, and the modification is applied to that copy
         this ensures that other threads reading the list while it's being modified are un-effected.
 
-
-
         Read Operations: Fast and Direct, since they happen on a stable list without interferance from modifications.
 
         Write Operations: A new Copy of the list is created for every modifications. 

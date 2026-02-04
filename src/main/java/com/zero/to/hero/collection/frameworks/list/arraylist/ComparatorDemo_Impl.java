@@ -114,9 +114,9 @@ public class ComparatorDemo_Impl {
     }
 
     static class MyComparator implements Comparator<Integer>{
-        //we just have 2 think abt 2 obj rest all comparator can do
+        // we just have to think about 2 obj rest all comparator can do
         // I want in ascending order so first 1, 2, 3
-        //if we take    1        2
+        // if we take    1        2
         //             o1        o2  ->   o1-o2 ->  1-2  -> -1(-ve) so it will be in ascending order
         //                           ->   o2-o1 ->  2-1  -> +1(+ve) so 1 go right 2 come first so descending order
         @Override
